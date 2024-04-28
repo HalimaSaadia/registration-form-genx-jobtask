@@ -34,6 +34,10 @@ const useRegistrationFormValidation = () => {
       errors.contact = "Contact is required";
       setErrors(errors);
       return false
+    } else if(!/(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/.test(contact)){
+      errors.contact = "Please Provide a Valid Number";
+      setErrors(errors);
+      return false
     }
     if (!password.trim()) {
       errors.password = "Password is required";
@@ -43,6 +47,8 @@ const useRegistrationFormValidation = () => {
 
     if (!confirmPassword.trim()) {
       errors.confirmPassword = "Confirm password is required";
+      setErrors(errors);
+      return false
     } else if (confirmPassword !== password) {
       errors.confirmPassword = "Passwords do not match";
       setErrors(errors);
